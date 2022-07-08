@@ -5,18 +5,18 @@ package kata.supermarket.pricing.domain.models;
  */
 public class Quantity {
 
-    private final float amount ;
+    private final float value ;
 
-    private Quantity(float amount) {
-        this.amount = amount;
+    private Quantity(float value) {
+        this.value = value;
     }
 
-    public float amount(){
-        return amount;
+    public float value(){
+        return value;
     }
 
-    public static Quantity of(final float amount){
-        return new Quantity(amount);
+    public static Quantity of(final float value){
+        return new Quantity(value);
     }
 
     public static Quantity add(final Quantity arg1, final Quantity arg2){
@@ -28,7 +28,7 @@ public class Quantity {
             throw new NullPointerException("Second 'Quantity' argument for addition cant be null");
         }
 
-        return Quantity.of(arg1.amount + arg2.amount);
+        return Quantity.of(arg1.value + arg2.value);
     }
 
     public static Quantity substract(final Quantity arg1, final Quantity arg2) {
@@ -38,17 +38,18 @@ public class Quantity {
         }
 
         if (null == arg2) {
-            throw new NullPointerException("Second 'Quantity' argument to be substracted cant be null")
+            throw new NullPointerException("Second 'Quantity' argument to be substracted cant be null");
         }
 
-        if (arg1.amount <= arg2.amount) {
+        if (arg1.value <= arg2.value) {
             throw new IllegalArgumentException("Cant have a negative result for quantity substraction");
         }
 
-        return Quantity.of(arg1.amount - arg2.amount);
+        return Quantity.of(arg1.value - arg2.value);
     }
 
-    public boolean equals(final Quantity arg1, final Quantity arg2) {
+    public boolean equal(final Quantity arg1, final Quantity arg2) {
+
         if (null == arg1) {
             throw new NullPointerException("First 'Quantity' argument for equality cant be null");
         }
@@ -57,7 +58,7 @@ public class Quantity {
             throw new NullPointerException("Second 'Quantity' argument for equality cant be null");
         }
 
-        return arg1.amount == arg2.amount ;
+        return arg1.value == arg2.value ;
 
     }
 

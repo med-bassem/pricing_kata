@@ -5,6 +5,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.text.MessageFormat.format;
+
 public class Cart {
 
     Integer id;
@@ -16,7 +18,7 @@ public class Cart {
         boolean isValidQty  = validateItemQuantity(item, quantity);
 
         if(isValidItem && isValidQty){
-            items.merge(item, Quantity.of(quantity), (oldQuantity, v) -> Quantity.of(oldQuantity.amount() + quantity));
+            items.merge(item, Quantity.of(quantity), (oldQuantity, v) -> Quantity.of(oldQuantity.value() + quantity));
             return true ;
         }
 
@@ -24,11 +26,14 @@ public class Cart {
     }
 
     private boolean validateItemQuantity(Item item, float quantity) throws ItemQuantityException {
-        if(BuyingMode.UNITARY == item.buyingMode && hasNoDecimals(quantity))
-            return true;
+        boolean valid = true ;
 
-        throw new ItemQuantityException(MessageFormat.format("Illegal quantity provided : {0} for Item {1}", quantity
-                , item));
+        if(!(BuyingMode.UNITARY == item.getBuyingMode() && hasNoDecimals(quantity))) {
+            throw new ItemQuantityException(format("Illegal quantity: {0} for Item: {1}", quantity, item));
+        }
+
+
+        return valid ;
     }
 
     private boolean hasNoDecimals(float quantity) {

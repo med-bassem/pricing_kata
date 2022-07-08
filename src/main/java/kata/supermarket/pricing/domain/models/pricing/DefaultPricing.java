@@ -1,6 +1,7 @@
 package kata.supermarket.pricing.domain.models.pricing;
 
 import kata.supermarket.pricing.domain.models.Item;
+import kata.supermarket.pricing.domain.models.Price;
 
 public class DefaultPricing implements Pricing {
     Price price ;
@@ -11,11 +12,11 @@ public class DefaultPricing implements Pricing {
     }
 
     public void accept(final Item item, float qty){
-        this.price = item.getPrice();
+        this.price = item.getUnitPrice();
         this.qty = qty;
     }
 
     public Price calculate(){
-        return new Price();
+        return Price.of(price.amount() * qty);
     }
 }
