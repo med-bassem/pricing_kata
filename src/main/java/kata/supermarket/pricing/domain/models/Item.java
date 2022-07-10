@@ -10,10 +10,10 @@ public class Item {
 
     private final Price unitPrice;
 
-    private final BuyingMode buyingMode;
+    private final ItemBuyMode buyingMode;
 
 
-    public Item(final String name, final Price unitPrice, final BuyingMode buyingMode){
+    public Item(final String name, final Price unitPrice, final ItemBuyMode buyingMode){
         initId();
         this.name = name ;
         this.unitPrice = unitPrice;
@@ -36,7 +36,7 @@ public class Item {
         return unitPrice;
     }
 
-    public BuyingMode getBuyingMode() {
+    public ItemBuyMode getBuyingMode() {
         return buyingMode;
     }
 }

@@ -1,6 +1,5 @@
 package kata.supermarket.pricing.domain.models.pricing;
 
-import kata.supermarket.pricing.domain.models.Item;
 import kata.supermarket.pricing.domain.models.Price;
 
 public class DefaultPricing implements Pricing {

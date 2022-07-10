@@ -1,5 +1,5 @@
 package kata.supermarket.pricing.domain.models;
 
-public enum BuyingMode {
+public enum ItemBuyMode {
     UNITARY, BYWHEIGHT;
 }

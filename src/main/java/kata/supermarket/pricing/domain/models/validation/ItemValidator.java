@@ -1,4 +1,4 @@
-package kata.supermarket.pricing.domain.models.pricing;
+package kata.supermarket.pricing.domain.models.validation;
 
 import kata.supermarket.pricing.domain.models.Item;
 
