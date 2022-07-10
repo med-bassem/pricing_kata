@@ -5,16 +5,12 @@ import kata.supermarket.pricing.domain.models.Price;
 import kata.supermarket.pricing.domain.models.Quantity;
 
 
-// Decorators parent class
 public abstract class PackagePricing implements Pricing{
 
-    private Item item;
-    private Quantity qty;
+    Pricing pricing;
 
-    public PackagePricing(final Item item, final Quantity quantity){
-        this.item = item ;
-        this.qty = quantity ;
+    @Override
+    public Price calculate(){
+        return pricing.calculate();
     }
-
-    public abstract Price calculate();
 }
