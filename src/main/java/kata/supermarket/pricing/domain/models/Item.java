@@ -1,6 +1,5 @@
 package kata.supermarket.pricing.domain.models;
 
-import java.util.Objects;
 import java.util.UUID;
 
 public class Item {
@@ -9,15 +8,15 @@ public class Item {
 
     private final String name;
 
-    private final Price unitPrice;
+    private final Price basePrice;
 
     private final ItemBuyMode buyingMode;
 
 
-    public Item(final String name, final Price unitPrice, final ItemBuyMode buyingMode){
+    public Item(final String name, final Price basePrice, final ItemBuyMode buyingMode){
         initId();
         this.name = name ;
-        this.unitPrice = unitPrice;
+        this.basePrice = basePrice;
         this.buyingMode = buyingMode;
     }
 
@@ -33,8 +32,8 @@ public class Item {
         return name;
     }
 
-    public Price getUnitPrice() {
-        return unitPrice;
+    public Price getBasePrice() {
+        return basePrice;
     }
 
     public ItemBuyMode getBuyingMode() {
@@ -46,7 +45,7 @@ public class Item {
         return "Item{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", unitPrice=" + unitPrice +
+                ", unitPrice=" + basePrice +
                 ", buyingMode=" + buyingMode +
                 '}';
     }

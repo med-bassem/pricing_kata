@@ -33,11 +33,13 @@ public class Cart {
 
 
     public Price checkout(final Map<Item, Pricing> pricings) {
+        CartValidator.validatePricings(pricings);
+
         AtomicReference<Price> total = new AtomicReference<>(Price.ZERO);
 
         content.forEach((item, quantity) -> {
                 Pricing pricing = findPricing(item, pricings);
-                var price = pricing.calculate(item.getUnitPrice(), quantity, item.getBuyingMode());
+                var price = pricing.calculate(item.getBasePrice(), quantity, item.getBuyingMode());
                 total.set(Price.add(total.get(), price));
             }
         );
