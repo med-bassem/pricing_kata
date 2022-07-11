@@ -1,5 +1,7 @@
 package kata.supermarket.pricing.domain.models;
 
+import java.util.Objects;
+
 /**
  * Value Object class for Quantity
  */
@@ -48,19 +50,21 @@ public class Quantity {
         return Quantity.of(arg1.value - arg2.value);
     }
 
-    public boolean equal(final Quantity arg1, final Quantity arg2) {
-
-        if (null == arg1) {
-            throw new NullPointerException("First 'Quantity' argument for equality cant be null");
-        }
-
-        if (null == arg2) {
-            throw new NullPointerException("Second 'Quantity' argument for equality cant be null");
-        }
-
-        return arg1.value == arg2.value ;
-
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Quantity quantity = (Quantity) o;
+        return Float.compare(quantity.value, value) == 0;
     }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
+    }
 
+    @Override
+    public String toString() {
+        return value + "" ;
+    }
 }

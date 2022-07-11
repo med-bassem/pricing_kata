@@ -7,12 +7,12 @@ import java.util.Set;
 
 public class ItemValidator {
 
-    public enum ItemValidation {
+    public enum ItemValidatorErr {
         CANT_BE_NULL("Item Cant be null");
 
         private final String message;
 
-        ItemValidation(String message) {
+        ItemValidatorErr(String message) {
             this.message = message ;
         }
 
@@ -26,11 +26,11 @@ public class ItemValidator {
         }
     }
 
-    public Set<String> validate(final Item item){
+    public static Set<String> validate(final Item item){
         Set<String> result = new HashSet<>();
 
         if(null == item){
-            result.add(ItemValidation.CANT_BE_NULL.message());
+            result.add(ItemValidatorErr.CANT_BE_NULL.message());
         }
 
         return result ;

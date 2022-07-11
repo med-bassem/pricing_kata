@@ -1,5 +1,6 @@
 package kata.supermarket.pricing.domain.models;
 
+import java.util.Objects;
 import java.util.UUID;
 
 public class Item {
@@ -38,5 +39,28 @@ public class Item {
 
     public ItemBuyMode getBuyingMode() {
         return buyingMode;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", unitPrice=" + unitPrice +
+                ", buyingMode=" + buyingMode +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Item item = (Item) o;
+        return id.equals(item.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.intValue();
     }
 }

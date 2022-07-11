@@ -5,10 +5,10 @@ import kata.supermarket.pricing.domain.models.Price;
 
 public abstract class PackagePricing implements Pricing{
 
-    Pricing pricing;
+    protected Pricing pricing;
 
-    @Override
-    public Price calculate(){
-        return pricing.calculate();
+    public PackagePricing(final Pricing pricing){
+        this.pricing = pricing;
     }
+
 }

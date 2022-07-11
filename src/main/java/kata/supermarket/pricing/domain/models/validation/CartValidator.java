@@ -2,7 +2,7 @@ package kata.supermarket.pricing.domain.models.validation;
 
 import kata.supermarket.pricing.domain.models.ItemBuyMode;
 import kata.supermarket.pricing.domain.models.Item;
-import kata.supermarket.pricing.domain.models.ItemQuantityException;
+import kata.supermarket.pricing.domain.models.exceptions.ItemQuantityException;
 
 import static java.text.MessageFormat.format;
 
@@ -24,12 +24,8 @@ public class CartValidator {
     }
 
     public static boolean validateItem(Item item) {
-        boolean valid = true ;
+        var errors = ItemValidator.validate(item);
 
-        if(null == item){
-            throw new NullPointerException("Item cant be null");
-        }
-
-        return valid;
+        return errors.isEmpty();
     }
 }

@@ -1,10 +1,14 @@
 package kata.supermarket.pricing.domain.models;
 
+import java.util.Objects;
+
 /**
  * Value Object class for Price
  */
 public class Price {
     private final float amount ;
+
+    public static final Price ZERO = Price.of(0);
 
     private Price(float amount) {
         this.amount = amount;
@@ -47,17 +51,21 @@ public class Price {
         return Price.of(arg1.amount - arg2.amount);
     }
 
-    public boolean equal(final Price arg1, final Price arg2) {
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Price price = (Price) o;
+        return Float.compare(price.amount, amount) == 0;
+    }
 
-        if (null == arg1) {
-            throw new NullPointerException("First 'Price' argument for equality cant be null");
-        }
+    @Override
+    public int hashCode() {
+        return Objects.hash(amount);
+    }
 
-        if (null == arg2) {
-            throw new NullPointerException("Second 'Price' argument for equality cant be null");
-        }
-
-        return arg1.amount == arg2.amount ;
-
+    @Override
+    public String toString() {
+        return amount +"";
     }
 }
